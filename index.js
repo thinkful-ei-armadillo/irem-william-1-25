@@ -2,7 +2,7 @@
 'use strict';
 
 const apiKey = 'addg1a0cb0qmUfz5gHiyFUAysPuw71fz5rbqnqLL';
-const searchURL = 'https://developer.nps.gov/api/v1/parks';
+const searchURL = 'https://developer.nps.gov/api/v1/parks/?api_key=addg1a0cb0qmUfz5gHiyFUAysPuw71fz5rbqnqLL';
 
 
 function testResults() {
@@ -10,9 +10,7 @@ function testResults() {
     .then(res => res.json())
     .then(resJson => console.log(resJson));
 }
-console.log(testResults);
-
-
+testResults();
 function setQueryParam(param){
   const queryItems=Object.keys(param)
     .map(key=>`${encodeURIComponent(key)}=${encodeURIComponent(param[key])}`);
@@ -22,12 +20,13 @@ function setQueryParam(param){
 
 function getStateParks(query, maxResults){
   const param ={
-    key: apiKey,
+    api_key: apiKey,
     q: query,
     maxResults
   };
   const queryString = setQueryParam(param);
   const url = searchURL + '?' + queryString;
+  // URL?q=query&maxResults=maxResults
 
   fetch(url)
     .then(res => res.json())
