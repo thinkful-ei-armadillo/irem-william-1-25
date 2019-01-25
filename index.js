@@ -2,15 +2,9 @@
 'use strict';
 
 const apiKey = 'addg1a0cb0qmUfz5gHiyFUAysPuw71fz5rbqnqLL';
-const searchURL = 'https://developer.nps.gov/api/v1/parks/?api_key=addg1a0cb0qmUfz5gHiyFUAysPuw71fz5rbqnqLL';
+const searchURL = 'https://developer.nps.gov/api/v1/parks';
 
 
-function testResults() {
-  return fetch(searchURL)
-    .then(res => res.json())
-    .then(resJson => console.log(resJson));
-}
-testResults();
 function setQueryParam(param){
   const queryItems=Object.keys(param)
     .map(key=>`${encodeURIComponent(key)}=${encodeURIComponent(param[key])}`);
@@ -30,24 +24,31 @@ function getStateParks(query, maxResults){
 
   fetch(url)
     .then(res => res.json())
-    .then(resJson => console.log(resJson));
+    .then(resJson => displayParkResults(resJson));
 }
 
 
 
 function displayParkResults(resJson) {
   $('results-list').empty();
+  let html = '';
   for (let i = 0; i <resJson.items.length; i++) {
+    const park = resJson;
+    console.log(park);
+    const name = park.name;
+    const description = park.description;
+    const url = park.url;
     $('#results-list').append(
-      `<li><h3>${parkName}</h3>
-        Full name: 
-        Description:
-        URL:
+      `<li><h3>${name}</h3>
+        Description: ${description},
+        URL: ${url}
       </li>`
     );
+    $('results-list').html(html); 
   }
 }
 
+displayParkResults();
 
 
 
