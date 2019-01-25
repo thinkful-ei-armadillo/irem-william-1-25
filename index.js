@@ -4,6 +4,15 @@
 const apiKey = 'addg1a0cb0qmUfz5gHiyFUAysPuw71fz5rbqnqLL';
 const searchURL = 'https://developer.nps.gov/api/v1/parks';
 
+
+function testResults() {
+  return fetch(searchURL)
+    .then(res => res.json())
+    .then(resJson => console.log(resJson));
+}
+console.log(testResults);
+
+
 function setQueryParam(param){
   const queryItems=Object.keys(param)
     .map(key=>`${encodeURIComponent(key)}=${encodeURIComponent(param[key])}`);
@@ -25,7 +34,35 @@ function getStateParks(query, maxResults){
     .then(resJson => console.log(resJson));
 }
 
-function main()
+
+
+function displayParkResults(resJson) {
+  $('results-list').empty();
+  for (let i = 0; i <resJson.items.length; i++) {
+    $('#results-list').append(
+      `<li><h3>${parkName}</h3>
+        Full name: 
+        Description:
+        URL:
+      </li>`
+    );
+  }
+}
+
+
+
+
+function watchForm() {
+  $('form').submit(function(e) {
+    e.preventDefault();
+    const searchTerm = $('#searchInput').val();
+    const maxResults = $('#limitSearchInput').val();
+    getStateParks(searchTerm, maxResults);
+  });
+}
+
+$(watchForm);
+
 
 // Requirements:
 // The user must be able to search for parks in one or more states.
@@ -36,3 +73,15 @@ function main()
 // Description
 // Website URL
 // The user must be able to make multiple searches and see only the results for the current search.
+
+
+
+// function testWord() {
+//   console.log('test search input');
+// }
+
+// function handlingSearchInput() {
+//   $('form').on('submit', function(e) {
+//     e.preventDefault();
+//   });
+// }
