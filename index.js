@@ -1,7 +1,7 @@
 /*global $*/
 'use strict';
 
-const apiKey = 'addg1a0cb0qmUfz5gHiyFUAysPuw71fz5rbqnqLL';
+const apiKey = 'ktteCteBHBnaliRlueOlGc2YjWNb4SOHILvWNias';
 const searchURL = 'https://developer.nps.gov/api/v1/parks';
 
 
@@ -25,6 +25,7 @@ function getStateParks(query, maxResults){
   fetch(url)
     .then(res => res.json())
     .then(resJson => displayParkResults(resJson));
+  // console.log(resJson));
 }
 
 
@@ -33,13 +34,13 @@ function displayParkResults(resJson) {
   $('results-list').empty();
   let html = '';
   for (let i = 0; i <resJson.items.length; i++) {
-    const park = resJson;
+    const park = resJson.data;
     console.log(park);
-    const name = park.name;
+    const states = park.states;
     const description = park.description;
     const url = park.url;
-    $('#results-list').append(
-      `<li><h3>${name}</h3>
+    html.append(
+      `<li><h3>${states}</h3>
         Description: ${description},
         URL: ${url}
       </li>`
@@ -47,10 +48,6 @@ function displayParkResults(resJson) {
     $('results-list').html(html); 
   }
 }
-
-displayParkResults();
-
-
 
 function watchForm() {
   $('form').submit(function(e) {
