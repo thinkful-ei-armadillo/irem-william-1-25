@@ -9,14 +9,15 @@
 <body>
     <h1>Search For Your Dream Park</h1>
     <form>
-        <input id='js-searchInput' type="text" placeholder="Search for a Park"><br>
-        <!-- <input id='limitSearchInput' type="number" placeholder="Limit your search"> -->
+        <label for="search-term">Search</label>
+        <input type="text" name="search-term" id='js-search-term' required placeholder="Search for a park"><br>
+
+        <!-- <label for="max-results">Maximum results to return</label>
+        <input type="number" name='max-results' id="js-max-results" value="10"> -->
     </form>
-    <section id="js-results" class="hidden">
-        <h2>Search results</h2>
-        <ul id="results-list">
-        </ul>
-    </section>
+    <section id="results" class="hidden"></section>
+    <ul id="results-list">
+    </ul>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="./index.js"></script>
 </body>
