@@ -9,8 +9,14 @@
 <body>
     <h1>Search For Your Park</h1>
     <form>
-        <input id='js-searchInput' type="text" required placeholder="Enter your query here"><br>
-        <!-- <input id='js-maxResults' type='number' placeholder='10'> -->
+        <label for='search-input'>Search Area</label>
+        <input id='js-searchInput' type="text" required placeholder="Enter your query here">
+
+        <input type='submit' value='Search'><br>
+
+        <label for='max-results'>Maximum results</label>
+        <input id='js-maxResults' type='number' value='10' size='3'>
+
     </form>
     <section id="results">
         <h2>Results</h2>

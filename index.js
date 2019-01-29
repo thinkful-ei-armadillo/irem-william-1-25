@@ -6,6 +6,7 @@ const searchURL = 'https://developer.nps.gov/api/v1/parks';
 
 // HTTP Header = { X-Api-Key : addg1a0cb0qmUfz5gHiyFUAysPuw71fz5rbqnqLL } 
 
+// Goal: display a list of national parks in an area
 
 function setQueryParam(param){
   const queryItems=Object.keys(param)
@@ -54,7 +55,7 @@ function watchForm() {
   $('form').submit(function(e) {
     e.preventDefault();
     const searchTerm = $('#js-searchInput').val();
-    const maxResults = $('#js-maxResults').val();
+    const maxResults = $('#js-maxResults').val()-1; // returning 1 extra
     getStateParks(searchTerm, maxResults);
   });
 }
