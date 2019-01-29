@@ -4,6 +4,7 @@
 const apiKey = 'addg1a0cb0qmUfz5gHiyFUAysPuw71fz5rbqnqLL';
 const searchURL = 'https://developer.nps.gov/api/v1/parks';
 
+// HTTP Header = { X-Api-Key : addg1a0cb0qmUfz5gHiyFUAysPuw71fz5rbqnqLL } 
 
 
 function setQueryParam(param){
@@ -11,6 +12,7 @@ function setQueryParam(param){
     .map(key=>`${encodeURIComponent(key)}=${encodeURIComponent(param[key])}`);
   return queryItems.join('&');
 }
+
 
 function getStateParks(query, maxResults = 10){
   const param ={
@@ -20,9 +22,8 @@ function getStateParks(query, maxResults = 10){
   };
   const queryString = setQueryParam(param);
   const url = searchURL + '?' + queryString;
-  // URL?q=query&maxResults=maxResults
-  console.log(queryString);
-
+  console.log(queryString); // example query = dog
+  // api_key=addg1a0cb0qmUfz5gHiyFUAysPuw71fz5rbqnqLL&q=dog&limit=10
   fetch(url)
     .then(res => res.json())
     .then(resJson => displayParkResults(resJson));
@@ -31,17 +32,19 @@ function getStateParks(query, maxResults = 10){
 
 // Parks in the given state must be displayed on the page with Full name, description, website URL
 function displayParkResults(resJson) {
-  $('results-list').empty();
-  let html = '';
+  $('#results-list').empty(); // clears on each submit
   console.log(resJson); // returning undefined;
-  for (let i = 0; i < resJson.data.length; i++) {
-    $('#results-list').append(
-      `<li><h3>${resJson.data[i].fullName}</h3>
-        Description: ${resJson.data[i].description},
-        URL: ${resJson.data[i].url}
+  if (resJson.data.length < 1) { // if no matching results return string
+    return $('#results-list').text('No matching terms');
+  } else {
+    for (let i = 0; i < resJson.data.length; i++) {
+      $('#results-list').append(
+        `<li><h3>${resJson.data[i].fullName}</h3>
+        Description: ${resJson.data[i].description}<br><br>
+        URL: <a href='${resJson.data[i].url}'>${resJson.data[i].url}</a>
       </li>`
-    );
-    $('results-list').html(html); 
+      );
+    }
   }
 }
 
@@ -50,8 +53,8 @@ function displayParkResults(resJson) {
 function watchForm() {
   $('form').submit(function(e) {
     e.preventDefault();
-    const searchTerm = $('#searchInput').val();
-    const maxResults = $('#limitSearchInput').val();
+    const searchTerm = $('#js-searchInput').val();
+    const maxResults = $('#js-maxResults').val();
     getStateParks(searchTerm, maxResults);
   });
 }

@@ -7,13 +7,13 @@
     <title>National Park API</title>
 </head>
 <body>
-    <h1>Search For Your Dream Park</h1>
+    <h1>Search For Your Park</h1>
     <form>
-        <input id='searchInput' type="text" placeholder="Search for a Park"><br>
-        <!-- <input id='limitSearchInput' type="number" placeholder="Limit your search"> -->
+        <input id='js-searchInput' type="text" required placeholder="Enter your query here"><br>
+        <!-- <input id='js-maxResults' type='number' placeholder='10'> -->
     </form>
-    <section id="results" class="hidden">
-        <h2>Search results</h2>
+    <section id="results">
+        <h2>Results</h2>
         <ul id="results-list">
         </ul>
     </section>
