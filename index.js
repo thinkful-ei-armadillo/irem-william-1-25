@@ -5,22 +5,23 @@ const apiKey = 'addg1a0cb0qmUfz5gHiyFUAysPuw71fz5rbqnqLL';
 const searchURL = 'https://developer.nps.gov/api/v1/parks';
 
 
+
 function setQueryParam(param){
   const queryItems=Object.keys(param)
     .map(key=>`${encodeURIComponent(key)}=${encodeURIComponent(param[key])}`);
   return queryItems.join('&');
 }
 
-
-function getStateParks(query, maxResults){
+function getStateParks(query, maxResults = 10){
   const param ={
     api_key: apiKey,
-    q: query,
-    maxResults
+    q: query, // term to search on
+    limit: maxResults // limit default is 50 from API docs
   };
   const queryString = setQueryParam(param);
   const url = searchURL + '?' + queryString;
   // URL?q=query&maxResults=maxResults
+  console.log(queryString);
 
   fetch(url)
     .then(res => res.json())
@@ -28,27 +29,21 @@ function getStateParks(query, maxResults){
 }
 
 
-
+// Parks in the given state must be displayed on the page with Full name, description, website URL
 function displayParkResults(resJson) {
   $('results-list').empty();
   let html = '';
-  for (let i = 0; i <resJson.items.length; i++) {
-    const park = resJson;
-    console.log(park);
-    const name = park.name;
-    const description = park.description;
-    const url = park.url;
+  console.log(resJson); // returning undefined;
+  for (let i = 0; i < resJson.data.length; i++) {
     $('#results-list').append(
-      `<li><h3>${name}</h3>
-        Description: ${description},
-        URL: ${url}
+      `<li><h3>${resJson.data[i].fullName}</h3>
+        Description: ${resJson.data[i].description},
+        URL: ${resJson.data[i].url}
       </li>`
     );
     $('results-list').html(html); 
   }
 }
-
-displayParkResults();
 
 
 
@@ -61,18 +56,9 @@ function watchForm() {
   });
 }
 
+// runs on page load
 $(watchForm);
 
-
-// Requirements:
-// The user must be able to search for parks in one or more states.
-// The user must be able to set the max number of results, with a default of 10.
-// The search must trigger a call to NPS's API.
-// The parks in the given state must be displayed on the page. Include at least:
-// Full name
-// Description
-// Website URL
-// The user must be able to make multiple searches and see only the results for the current search.
 
 
 
