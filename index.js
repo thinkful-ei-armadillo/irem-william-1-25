@@ -31,8 +31,7 @@ function getStateParks(query, maxResults){
 
 
 function displayParkResults(resJson) {
-  let html = '';
-  console.log(resJson);
+  $('#results-list').empty();
   for (let i = 0; i <resJson.data.length; i++) {
     const park = resJson.data[i];
     const name = park.fullName;
@@ -43,8 +42,7 @@ function displayParkResults(resJson) {
         Description: ${description},<br>
         URL: ${url}
       </li>`
-    );
-    $('results-list').html(html); 
+    ); 
   }
 }
 
