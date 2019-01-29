@@ -40,7 +40,7 @@ function displayParkResults(resJson) {
   } else {
     for (let i = 0; i < resJson.data.length; i++) {
       $('#results-list').append(
-        `<li><h3>${resJson.data[i].fullName}</h3>
+        `<h2>Results</h2><li><h3>${resJson.data[i].fullName}</h3>
         Description: ${resJson.data[i].description}<br><br>
         URL: <a href='${resJson.data[i].url}'>${resJson.data[i].url}</a>
       </li>`
