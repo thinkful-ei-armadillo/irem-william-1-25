@@ -14,9 +14,9 @@ function setQueryParam(param){
 
 function getStateParks(query, maxResults){
   const param ={
-    api_key: apiKey,
     q: query,
-    maxResults
+    api_key: apiKey,
+    limit: maxResults
   };
   const queryString = setQueryParam(param);
   const url = searchURL + '?' + queryString;
@@ -25,23 +25,22 @@ function getStateParks(query, maxResults){
   fetch(url)
     .then(res => res.json())
     .then(resJson => displayParkResults(resJson));
-  // console.log(resJson));
+  // console.log(resJson.data[0]));
 }
 
 
 
 function displayParkResults(resJson) {
-  $('results-list').empty();
   let html = '';
-  for (let i = 0; i <resJson.items.length; i++) {
-    const park = resJson.data;
-    console.log(park);
-    const states = park.states;
+  console.log(resJson);
+  for (let i = 0; i <resJson.data.length; i++) {
+    const park = resJson.data[i];
+    const name = park.fullName;
     const description = park.description;
     const url = park.url;
-    html.append(
-      `<li><h3>${states}</h3>
-        Description: ${description},
+    $('#results-list').append(
+      `<li><h3> ${name}</h3>
+        Description: ${description},<br>
         URL: ${url}
       </li>`
     );
@@ -50,7 +49,7 @@ function displayParkResults(resJson) {
 }
 
 function watchForm() {
-  $('form').submit(function(e) {
+  $('form').on('submit', function(e) {
     e.preventDefault();
     const searchTerm = $('#searchInput').val();
     const maxResults = $('#limitSearchInput').val();
