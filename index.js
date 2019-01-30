@@ -14,7 +14,8 @@ function setQueryParam(param){
 
 function getStateParks(query, maxResults){
   const param ={
-    q: query,
+    // q: query,
+    stateCode: query,
     api_key: apiKey,
     limit: maxResults
   };
