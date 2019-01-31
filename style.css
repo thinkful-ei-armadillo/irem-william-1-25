@@ -4,32 +4,53 @@
 
 body {
     font-family: 'Roboto', sans-serif;
+    font-size: 3vw;
 }
 
 h1 {
     text-align: center;
+    font-size: 6vw;
+}
+
+h2 {
+    font-size: 4vw;
+}
+
+input {
+    padding: 5px;
+    font-size: 2.5vw;
+    border: 1px solid lightgrey;
 }
 
 #results-list {
     max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-right: 10%;
 }
 
 .input-area {
     padding: 30px;
+    max-width: 700px;
+    height: auto;
 }
 
-label {
+.search-label {
     margin-bottom: 20px;
 }
 
+.search-input {
+    width: 18vw;
+}
+
 img {
-    width: 100px;
     float: right;
+    width: 20%;
     margin-right: 10%;
 }
 
-.max-results {
-    width: 5em;
+.maxresult-input {
+    width: 10vw;
 }
 
 form {
@@ -40,11 +61,11 @@ form {
     background-color: rgb(186, 116, 63);
     border: none;
     color: white;
-    padding: 15px;
+    padding: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 12px;
+    font-size: 4vw;
     border-radius: 10px;
     margin-top: 10px;
 }

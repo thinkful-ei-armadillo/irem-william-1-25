@@ -12,10 +12,10 @@
     <h1 id='title'>Search for National Parks</h1>
     <img src="http://www.stickpng.com/assets/images/5a7a23f7abc3d121aba71031.png" class='logo' alt="national park icon">
     <form class='input-area'> 
-        <label for='search-input'> Enter 1-2 state codes:
-            <input name='search-input' class='search-input' size='10' id='js-searchInput' type="text" required placeholder="ex: CA,NY"/></label><br>
-        <label for='max-results'>Maximum results:
-            <input name='max-results' class='search-input' id='js-maxResults' type='number' min='1' value='10'/></label><br>
+        <label for='search-input' class='search-label'> Enter 1-2 state codes:
+            <input name='search-input' class='search-input' maxlength='5' id='js-searchInput' type="text" required placeholder="ex: CA,NY"/></label><br>
+        <label for='max-results' class='max-label'>Maximum results:
+            <input name='max-results' class='maxresult-input' id='js-maxResults' type='number' min='1' value='10'/></label><br>
         <input type='submit' class='search-button' value='Search'>
     </form>
     <section id="results">
