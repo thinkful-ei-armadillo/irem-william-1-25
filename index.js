@@ -15,10 +15,11 @@ function setQueryParam(param){
 }
 
 
-function getStateParks(query, maxResults = 10){
-  const param ={
+function getStateParks(stateCode, maxResults = 10){
+  const param = {
     api_key: apiKey,
-    q: query, // term to search on
+    stateCode, // term to search on
+    // comma delimited list of 2 character state codes
     limit: maxResults // limit default is 50 from API docs
   };
   const queryString = setQueryParam(param);
