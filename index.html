@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>National Park API</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
-    <h1>Search for National Parks</h1>
-    <form>
-        <label for='search-input'>Enter an area: </label>
-        <input id='js-searchInput' type="text" required placeholder="City or State">
-
-        <input type='submit' value='Search'><br>
-
+    <h1 id='title'>Search for National Parks</h1>
+    <img src="http://www.stickpng.com/assets/images/5a7a23f7abc3d121aba71031.png" class='logo' alt="national park icon">
+    <form class='input-area'> 
+        <label for='search-input'>Enter state code: </label>
+        <input class='search-input' size='10' id='js-searchInput' type="text" required placeholder="ex: CA,NY"><br>
         <label for='max-results'>Maximum results: </label>
-        <input id='js-maxResults' type='number' value='10' size='3' width='30'>
+        <input class='max-results' id='js-maxResults' type='number' value='10'><br>
+        <input type='submit' class='search-button' value='Search'>
 
     </form>
     <section id="results">
